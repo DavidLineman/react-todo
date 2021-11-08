@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class TodoItem extends React.Component {
-  contructor(props) {
+  constructor(props) {
     super(props)
     this.state = {
       complete: this.props.todoItem.complete, 
