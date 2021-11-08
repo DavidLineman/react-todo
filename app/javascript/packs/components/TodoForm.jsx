@@ -31,7 +31,7 @@ class TodoForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="my-3">
-        <div className="form-row">
+        <div className="row">
           <div className="form-group col-md-8">
             <input 
               type="text"
