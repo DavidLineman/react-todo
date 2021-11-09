@@ -38,7 +38,7 @@ class TodoItem extends React.Component {
     });
     this.updateTodoItem();
   }
-  updateTodoItem = _.debounce(() {
+  updateTodoItem = _.debounce(() => {
     setAxiosHeaders();
     axios
       .put(this.path, {
@@ -55,7 +55,10 @@ class TodoItem extends React.Component {
   render() {
     const { todoItem } = this.props
     return (
-      <tr className={`${this.state.complete ? 'table-light' : ''}`}>
+      <tr 
+      className={`${ this.state.complete && this.props.hideCompletedTodoItems ? `d-none` : "" } ${this.state.complete ? "table-light" : ""}`}
+      >
+
         <td>
           <svg
             className={`bi bi-check-circle ${this.state.complete ? `text-success` : `text-muted`}`}
@@ -122,5 +125,6 @@ export default TodoItem
 
 TodoItem.proptypes = {
   todoItem: PropTypes.object.isRequired,
-  getTodoItems: PropTypes.func.isRequired
+  getTodoItems: PropTypes.func.isRequired,
+  hideCompletedTodoItems: PropTypes.bool.isRequired
 };
