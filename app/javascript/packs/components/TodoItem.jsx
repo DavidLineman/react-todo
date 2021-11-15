@@ -104,7 +104,7 @@ class TodoItem extends React.Component {
             />
             <label
               className="form-check-label"
-              htmflFor={`complete-${todoItem.id}`}
+              htmflfor={`complete-${todoItem.id}`}
             >
               Complete?
             </label>
