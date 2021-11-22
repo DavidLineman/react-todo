@@ -7,7 +7,7 @@ import TodoItems  from './TodoItems';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import Spinner from './Spinner';
-import ErrorMessage from "./ErrorMessage"
+import ErrorMessage from "./ErrorMessage";
 
 class TodoApp extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class TodoApp extends React.Component {
     this.getTodoItems = this.getTodoItems.bind(this);
     this.createTodoItem = this.createTodoItem.bind(this);
     this.toggleCompletedTodoItems = this.toggleCompletedTodoItems.bind(this);
-    this.handleErrors = this.clearErrors.bind(this);
+    this.handleErrors = this.handleErrors.bind(this);
     this.clearErrors = this.clearErrors.bind(this);
   }
   componentDidMount() {
@@ -31,6 +31,7 @@ class TodoApp extends React.Component {
     axios
       .get("api/v1/todo_items")
       .then(response => {
+        this.clearErrors();
         this.setState({ isLoading: true });
         const todoItems = response.data;
         this.setState({ todoItems });
@@ -38,7 +39,11 @@ class TodoApp extends React.Component {
       })
       .catch(error => {
         this.setState({ isLoading: true });
-        console.log(error);
+        this.setState({
+          errorMessage: {
+            message: "There was an error loading your todo items..."
+          }
+        });
       });
   }
   createTodoItem(todoItem) {
